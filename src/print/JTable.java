@@ -22,12 +22,13 @@ public class JTable extends javax.swing.JFrame {
     Statement st;
     ResultSet rs;
     int idc;
-    
+    int flagBoton = 0;
     int carFlaAct = 0;
     
     public JTable() {
         initComponents();
         setLocationRelativeTo(null);
+        ActualizarBoton.setEnabled(false);
         consulta();
     }
 
@@ -249,6 +250,11 @@ public class JTable extends javax.swing.JFrame {
                 "Codigo", "Descripcion", "Estado"
             }
         ));
+        Tabla.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TablaMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(Tabla);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -303,6 +309,7 @@ public class JTable extends javax.swing.JFrame {
 
     private void AgregarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarBotonActionPerformed
         // get y llamar a adicionar
+        flagBoton = 1;
         agregar();
     }//GEN-LAST:event_AgregarBotonActionPerformed
 
@@ -325,6 +332,8 @@ public class JTable extends javax.swing.JFrame {
 
     private void ModificarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModificarBotonActionPerformed
         // TODO add your handling code here:
+        flagBoton = 2;
+        modificar();
     }//GEN-LAST:event_ModificarBotonActionPerformed
 
     private void ReactivarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReactivarBotonActionPerformed
@@ -343,6 +352,12 @@ public class JTable extends javax.swing.JFrame {
     private void SalirBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalirBotonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_SalirBotonActionPerformed
+
+    private void TablaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaMouseClicked
+        // TODO add your handling code here:
+        int fila = Tabla.getSelectedRow();
+        getFila(fila);
+    }//GEN-LAST:event_TablaMouseClicked
 
     /**
      * @param args the command line arguments
@@ -426,6 +441,9 @@ public class JTable extends javax.swing.JFrame {
     }
     
     private void agregar() {
+        ActualizarBoton.setEnabled(true);
+        txtCode.setEnabled(true);
+        txtNombre.setEnabled(true);
         txtEstado.setText("A");
         txtCode.setEditable(true);
         txtNombre.setEditable(true);
@@ -433,39 +451,71 @@ public class JTable extends javax.swing.JFrame {
     }
     
     private void actualizar() {
-        
         String codigo = txtCode.getText();
         String nombre = txtNombre.getText();
         String estado = txtEstado.getText();
-        
-        if(((codigo.equals("")) || (nombre.equals("")))){
-            JOptionPane.showMessageDialog(null, "Falta Ingresar Datos!");
-        } else {
-            if ((carFlaAct == 1)) {
-                try {
-                    String sql = "insert into c1z_tipo_clientes (TipCliCod, TipCliNom, TipCliEstReg) values('"+codigo+"','"+nombre+"','"+estado+"')";
-                    conet = con1.getConnection();
-                    st = conet.createStatement();
-                    st.executeUpdate(sql);
-                    JOptionPane.showMessageDialog(null, "Nuevo Tipo Cliente Registrado!");
-                    limpiarFormulario();
-                    desactivarFormulario();
-                    limpiarTabla();
-                } catch (Exception e) {
-                    System.out.println("Error SQL: "+ e);
+        switch (flagBoton) {
+            case 1:
+                //AgregarBoton.setEnabled(false);
+                if (((codigo.equals("")) || (nombre.equals("")))) {
+                    JOptionPane.showMessageDialog(null, "Falta Ingresar Datos!");
+                } else {
+                    if ((carFlaAct == 1)) {
+                        try {
+                            String sql = "insert into c1z_tipo_clientes (TipCliCod, TipCliNom, TipCliEstReg) values('" + codigo + "','" + nombre + "','" + estado + "')";
+                            conet = con1.getConnection();
+                            st = conet.createStatement();
+                            st.executeUpdate(sql);
+                            JOptionPane.showMessageDialog(null, "Nuevo Tipo Cliente Registrado!");
+                            limpiarFormulario();
+                            desactivarFormulario();
+                            limpiarTabla();
+                        } catch (Exception e) {
+                            System.out.println("Error SQL: " + e);
+                        }
+                    } else {
+                        System.out.println("Flag Error");
+                    }
                 }
-            } else {
-                System.out.println("Flag Error");
-            }
+                break;
+            case 2:
+                //ModificarBoton.setEnabled(false);
+                if (((nombre.equals("")))) {
+                    JOptionPane.showMessageDialog(null, "Falta Ingresar Nombre!");
+                } else {
+                    if ((carFlaAct == 1)) {
+                        try {
+                            String sql = "update c1z_tipo_clientes set TipCliNom='" + nombre + "' where TipCliCod=" + codigo;
+                            conet = con1.getConnection();
+                            st = conet.createStatement();
+                            st.executeUpdate(sql);
+                            JOptionPane.showMessageDialog(null, "Tipo Cliente Actualizado!");
+                            limpiarFormulario();
+                            desactivarFormulario();
+                            limpiarTabla();
+                        }catch (Exception e) {
+                            System.out.println("Error SQL: " + e);
+                        }
+                    }else {
+                        System.out.println("Flag Error");
+                    }
+                }
+                break;
+            default:
+                JOptionPane.showMessageDialog(null, "No se realizo ninguna accion");
         }
-            
+        flagBoton = 0;
+
+
     }
     
     private void cancelar() {
         carFlaAct = 0;
         limpiarFormulario();
         desactivarFormulario();
-        AgregarBoton.setEnabled(false);
+        ActualizarBoton.setEnabled(false);
+
+        
     }    
     
     private void limpiarTabla() {
@@ -510,7 +560,32 @@ public class JTable extends javax.swing.JFrame {
     }
     
     private void modificar() {
-        String sql = "select * from c1z_tipo_clientes";
+        ActualizarBoton.setEnabled(true);
+        int fila = Tabla.getSelectedRow();
+        if(fila == -1){
+            JOptionPane.showMessageDialog(null, "Ninguna fila seleccionada");
+        }
+        else{
+            idc = Integer.parseInt((String) Tabla.getValueAt(fila,0).toString());
+            String nombre = (String) Tabla.getValueAt(fila, 1);
+            String estado = (String) Tabla.getValueAt(fila, 2);
+            
+            txtCode.setText(""+idc);
+            txtCode.setEditable(false);
+            txtCode.setEnabled(false);
+            txtNombre.setText(nombre);
+            txtNombre.setEditable(true);
+            txtNombre.setEnabled(true);
+            
+            txtEstado.setText(estado);
+            txtEstado.setEditable(false);
+            txtEstado.setEnabled(false);
+            carFlaAct = 1;
+            
+            
+            //String sql = "select * from c1z_tipo_clientes";
+        }
+        /*String sql = "select * from c1z_tipo_clientes";
         
         try {
             conet = con1.getConnection();
@@ -527,6 +602,10 @@ public class JTable extends javax.swing.JFrame {
             Tabla.setModel(modelo);
             
         } catch (Exception e) {
-        }
+        }*/
     }
+     private int getFila(int fila){
+         
+         return fila;
+     }
 }
