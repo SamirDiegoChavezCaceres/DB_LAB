@@ -502,7 +502,7 @@ public class JTable extends javax.swing.JFrame {
                 }
                 break;
             default:
-                JOptionPane.showMessageDialog(null, "No se realizo ninguna accion");
+                JOptionPane.showMessageDialog(null, "No se realizo ninguna modificacion");
         }
         flagBoton = 0;
 
