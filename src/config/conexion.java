@@ -19,7 +19,7 @@ public class conexion {
         try{
             String user = "root";
             String password = "";
-            String url = "jdbc:mysql://localhost:7777/lab05";
+            String url = "jdbc:mysql://localhost:3306/lab05";
             Class.forName("com.mysql.cj.jdbc.Driver");
             connection = DriverManager.getConnection(url,user,password);
         }catch (Exception e) {

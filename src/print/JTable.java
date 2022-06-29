@@ -337,6 +337,7 @@ public class JTable extends javax.swing.JFrame {
 
     private void CancelarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarBotonActionPerformed
         // TODO add your handling code here:
+        cancelar();
     }//GEN-LAST:event_CancelarBotonActionPerformed
 
     private void SalirBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalirBotonActionPerformed
@@ -459,6 +460,13 @@ public class JTable extends javax.swing.JFrame {
         }
             
     }
+    
+    private void cancelar() {
+        carFlaAct = 0;
+        limpiarFormulario();
+        desactivarFormulario();
+        AgregarBoton.setEnabled(false);
+    }    
     
     private void limpiarTabla() {
         for (int i = 0; i <= Tabla.getRowCount(); i++) {
