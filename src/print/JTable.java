@@ -24,7 +24,7 @@ public class JTable extends javax.swing.JFrame {
     int idc;
     int flagBoton = 0;
     int carFlaAct = 0;
-    
+
     public JTable() {
         initComponents();
         setLocationRelativeTo(null);
@@ -328,6 +328,8 @@ public class JTable extends javax.swing.JFrame {
 
     private void InactivarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InactivarBotonActionPerformed
         // TODO add your handling code here:
+        flagBoton = 4;
+        inactivar();
     }//GEN-LAST:event_InactivarBotonActionPerformed
 
     private void ModificarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModificarBotonActionPerformed
@@ -338,10 +340,14 @@ public class JTable extends javax.swing.JFrame {
 
     private void ReactivarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReactivarBotonActionPerformed
         // TODO add your handling code here:
+        flagBoton = 5;
+        reactivar();
     }//GEN-LAST:event_ReactivarBotonActionPerformed
 
     private void EliminarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarBotonActionPerformed
         // TODO add your handling code here:
+        flagBoton = 3;
+        eliminar();
     }//GEN-LAST:event_EliminarBotonActionPerformed
 
     private void CancelarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarBotonActionPerformed
@@ -351,6 +357,7 @@ public class JTable extends javax.swing.JFrame {
 
     private void SalirBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalirBotonActionPerformed
         // TODO add your handling code here:
+        System.exit(0);
     }//GEN-LAST:event_SalirBotonActionPerformed
 
     private void TablaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaMouseClicked
@@ -421,7 +428,7 @@ public class JTable extends javax.swing.JFrame {
 
     private void consulta() {
         String sql = "select * from c1z_tipo_clientes";
-        
+
         try {
             conet = con1.getConnection();
             st = conet.createStatement();
@@ -435,11 +442,11 @@ public class JTable extends javax.swing.JFrame {
                 modelo.addRow(tipoClientes);
             }
             Tabla.setModel(modelo);
-            
+
         } catch (Exception e) {
         }
     }
-    
+
     private void agregar() {
         ActualizarBoton.setEnabled(true);
         txtCode.setEnabled(true);
@@ -449,7 +456,7 @@ public class JTable extends javax.swing.JFrame {
         txtNombre.setEditable(true);
         carFlaAct = 1;
     }
-    
+
     private void actualizar() {
         String codigo = txtCode.getText();
         String nombre = txtNombre.getText();
@@ -493,96 +500,152 @@ public class JTable extends javax.swing.JFrame {
                             limpiarFormulario();
                             desactivarFormulario();
                             limpiarTabla();
-                        }catch (Exception e) {
+                        } catch (Exception e) {
                             System.out.println("Error SQL: " + e);
                         }
-                    }else {
+                    } else {
                         System.out.println("Flag Error");
                     }
                 }
                 break;
+            case 3:
+                //EliminarBoton.setEnabled(false);
+                if (carFlaAct == 1) {
+                    try {
+                        String sql = "update c1z_tipo_clientes set TipCliEstReg='*' where TipCliCod=" + codigo;
+                        conet = con1.getConnection();
+                        st = conet.createStatement();
+                        st.executeUpdate(sql);
+                        JOptionPane.showMessageDialog(null, "Tipo Cliente Eliminado!");
+                        limpiarFormulario();
+                        desactivarFormulario();
+                        limpiarTabla();
+                    } catch (Exception e) {
+                        System.out.println("Error SQL: " + e);
+                    }
+                }
+                break;
+            case 4:
+                //InactivarBoton.setEnabled(false);
+                if (carFlaAct == 1) {
+                    try {
+                        String sql = "update c1z_tipo_clientes set TipCliEstReg='I' where TipCliCod=" + codigo;
+                        conet = con1.getConnection();
+                        st = conet.createStatement();
+                        st.executeUpdate(sql);
+                        JOptionPane.showMessageDialog(null, "Tipo Cliente Inactivado!");
+                        limpiarFormulario();
+                        desactivarFormulario();
+                        limpiarTabla();
+                    } catch (Exception e) {
+                        System.out.println("Error SQL: " + e);
+                    }
+                }
+                break;
+            case 5:
+                //ReactivarBoton.setEnabled(false);
+                if (estado.equals("*") || estado.equals("I")) {
+                    if (carFlaAct == 1) {
+                        try {
+                            String sql = "update c1z_tipo_clientes set TipCliEstReg='A' where TipCliCod=" + codigo;
+                            conet = con1.getConnection();
+                            st = conet.createStatement();
+                            st.executeUpdate(sql);
+                            JOptionPane.showMessageDialog(null, "Tipo Cliente Reactivado!");
+                            limpiarFormulario();
+                            desactivarFormulario();
+                            limpiarTabla();
+                        } catch (Exception e) {
+                            System.out.println("Error SQL: " + e);
+                        }
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "El estado se encuentra activo");
+                }
+                break;
             default:
                 JOptionPane.showMessageDialog(null, "No se realizo ninguna modificacion");
+                break;
         }
         flagBoton = 0;
 
-
     }
-    
+
     private void cancelar() {
         carFlaAct = 0;
         limpiarFormulario();
         desactivarFormulario();
         ActualizarBoton.setEnabled(false);
+    }
 
-        
-    }    
-    
     private void limpiarTabla() {
         for (int i = 0; i <= Tabla.getRowCount(); i++) {
             modelo.removeRow(i);
-            i=i-1;
+            i = i - 1;
         }
     }
-    
+
     private void limpiarFormulario() {
         String t = "";
         txtCode.setText(t);
         txtNombre.setText(t);
         txtEstado.setText(t);
     }
-    
+
     private void desactivarFormulario() {
         String t = "";
         txtCode.setEditable(false);
         txtNombre.setEditable(false);
     }
-    
+
     private void eliminar() {
-        String sql = "select * from c1z_tipo_clientes";
-        
-        try {
-            conet = con1.getConnection();
-            st = conet.createStatement();
-            rs = st.executeQuery(sql);
-            Object[] tipoClientes = new Object[3];
-            modelo = (DefaultTableModel) Tabla.getModel();
-            while (rs.next()) {
-                tipoClientes[0] = rs.getInt("TipCliCod");
-                tipoClientes[1] = rs.getString("TipCliNom");
-                tipoClientes[2] = rs.getString("TipCliEstReg");
-                modelo.addRow(tipoClientes);
-            }
-            Tabla.setModel(modelo);
-            
-        } catch (Exception e) {
+        ActualizarBoton.setEnabled(true);
+        int fila = Tabla.getSelectedRow();
+        if (fila == -1) {
+            JOptionPane.showMessageDialog(null, "Ninguna fila seleccionada");
+        } else {
+            idc = Integer.parseInt((String) Tabla.getValueAt(fila, 0).toString());
+            String nombre = (String) Tabla.getValueAt(fila, 1);
+            String estado = (String) Tabla.getValueAt(fila, 2);
+
+            txtCode.setText("" + idc);
+            txtCode.setEditable(false);
+            txtCode.setEnabled(false);
+            txtNombre.setText(nombre);
+            txtNombre.setEditable(false);
+            txtNombre.setEnabled(false);
+
+            txtEstado.setText(estado);
+            txtEstado.setEditable(false);
+            txtEstado.setEnabled(false);
+            carFlaAct = 1;
+
+            //String sql = "select * from c1z_tipo_clientes";
         }
     }
-    
+
     private void modificar() {
         ActualizarBoton.setEnabled(true);
         int fila = Tabla.getSelectedRow();
-        if(fila == -1){
+        if (fila == -1) {
             JOptionPane.showMessageDialog(null, "Ninguna fila seleccionada");
-        }
-        else{
-            idc = Integer.parseInt((String) Tabla.getValueAt(fila,0).toString());
+        } else {
+            idc = Integer.parseInt((String) Tabla.getValueAt(fila, 0).toString());
             String nombre = (String) Tabla.getValueAt(fila, 1);
             String estado = (String) Tabla.getValueAt(fila, 2);
-            
-            txtCode.setText(""+idc);
+
+            txtCode.setText("" + idc);
             txtCode.setEditable(false);
             txtCode.setEnabled(false);
             txtNombre.setText(nombre);
             txtNombre.setEditable(true);
             txtNombre.setEnabled(true);
-            
+
             txtEstado.setText(estado);
             txtEstado.setEditable(false);
             txtEstado.setEnabled(false);
             carFlaAct = 1;
-            
-            
+
             //String sql = "select * from c1z_tipo_clientes";
         }
         /*String sql = "select * from c1z_tipo_clientes";
@@ -604,8 +667,61 @@ public class JTable extends javax.swing.JFrame {
         } catch (Exception e) {
         }*/
     }
-     private int getFila(int fila){
-         
-         return fila;
-     }
+
+    private void inactivar() {
+        ActualizarBoton.setEnabled(true);
+        int fila = Tabla.getSelectedRow();
+        if (fila == -1) {
+            JOptionPane.showMessageDialog(null, "Ninguna fila seleccionada");
+        } else {
+            idc = Integer.parseInt((String) Tabla.getValueAt(fila, 0).toString());
+            String nombre = (String) Tabla.getValueAt(fila, 1);
+            String estado = (String) Tabla.getValueAt(fila, 2);
+
+            txtCode.setText("" + idc);
+            txtCode.setEditable(false);
+            txtCode.setEnabled(false);
+            txtNombre.setText(nombre);
+            txtNombre.setEditable(false);
+            txtNombre.setEnabled(false);
+
+            txtEstado.setText(estado);
+            txtEstado.setEditable(false);
+            txtEstado.setEnabled(false);
+            carFlaAct = 1;
+
+            //String sql = "select * from c1z_tipo_clientes";
+        }
+    }
+
+    private void reactivar() {
+        ActualizarBoton.setEnabled(true);
+        int fila = Tabla.getSelectedRow();
+        if (fila == -1) {
+            JOptionPane.showMessageDialog(null, "Ninguna fila seleccionada");
+        } else {
+            idc = Integer.parseInt((String) Tabla.getValueAt(fila, 0).toString());
+            String nombre = (String) Tabla.getValueAt(fila, 1);
+            String estado = (String) Tabla.getValueAt(fila, 2);
+
+            txtCode.setText("" + idc);
+            txtCode.setEditable(false);
+            txtCode.setEnabled(false);
+            txtNombre.setText(nombre);
+            txtNombre.setEditable(false);
+            txtNombre.setEnabled(false);
+
+            txtEstado.setText(estado);
+            txtEstado.setEditable(false);
+            txtEstado.setEnabled(false);
+            carFlaAct = 1;
+
+            //String sql = "select * from c1z_tipo_clientes";
+        }
+    }
+
+    private int getFila(int fila) {
+
+        return fila;
+    }
 }
