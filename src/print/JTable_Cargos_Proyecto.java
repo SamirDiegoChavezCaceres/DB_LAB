@@ -7,15 +7,18 @@ package print;
 
 import config.conexion;
 import java.sql.*;
-import javax.swing.JOptionPane;
+import javax.swing.*;
 import javax.swing.table.*;
 
 /**
  *
  * @author Usuario
  */
-public class JTable extends javax.swing.JFrame {
+public class JTable_Cargos_Proyecto extends javax.swing.JFrame {
 
+    /**
+     * Creates new form JTable_Cargos_Proyecto
+     */
     conexion con1 = new conexion();
     Connection conet;
     DefaultTableModel modelo;
@@ -24,15 +27,15 @@ public class JTable extends javax.swing.JFrame {
     int idc;
     int flagBoton = 0;
     int carFlaAct = 0;
-
-    public JTable() {
+    
+    public JTable_Cargos_Proyecto() {
         initComponents();
-        tituloTabla.setText("C1Z_CONTROL_TIPO_CLIENTES");
+        tituloTabla.setText("GZZ_CARGOS_PROYECTO");
         setLocationRelativeTo(null);
         ActualizarBoton.setEnabled(false);
         consulta();
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -42,8 +45,6 @@ public class JTable extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
         tituloTabla = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -52,6 +53,9 @@ public class JTable extends javax.swing.JFrame {
         txtNombre = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         txtEstado = new javax.swing.JTextField();
+        jPanel3 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        Tabla = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
         AgregarBoton = new javax.swing.JButton();
         ModificarBoton = new javax.swing.JButton();
@@ -61,22 +65,6 @@ public class JTable extends javax.swing.JFrame {
         ReactivarBoton = new javax.swing.JButton();
         ActualizarBoton = new javax.swing.JButton();
         SalirBoton = new javax.swing.JButton();
-        jPanel3 = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        Tabla = new javax.swing.JTable();
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane1.setViewportView(jTable1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -93,20 +81,10 @@ public class JTable extends javax.swing.JFrame {
         jLabel3.setText("Nombre");
 
         txtNombre.setEditable(false);
-        txtNombre.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNombreActionPerformed(evt);
-            }
-        });
 
         jLabel4.setText("Estado Registro");
 
         txtEstado.setEditable(false);
-        txtEstado.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtEstadoActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -141,6 +119,35 @@ public class JTable extends javax.swing.JFrame {
                     .addComponent(jLabel4)
                     .addComponent(txtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(20, Short.MAX_VALUE))
+        );
+
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("BASE DE DATOS"));
+
+        Tabla.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Codigo", "Descripcion", "Estado"
+            }
+        ));
+        jScrollPane2.setViewportView(Tabla);
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 433, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(116, 116, 116))
         );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("OPCIONES"));
@@ -239,41 +246,7 @@ public class JTable extends javax.swing.JFrame {
                     .addComponent(ReactivarBoton)
                     .addComponent(ActualizarBoton)
                     .addComponent(SalirBoton))
-                .addContainerGap(46, Short.MAX_VALUE))
-        );
-
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("BASE DE DATOS"));
-
-        Tabla.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Codigo", "Descripcion", "Estado"
-            }
-        ));
-        Tabla.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                TablaMouseClicked(evt);
-            }
-        });
-        jScrollPane2.setViewportView(Tabla);
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 433, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(116, 116, 116))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -312,36 +285,11 @@ public class JTable extends javax.swing.JFrame {
         agregar();
     }//GEN-LAST:event_AgregarBotonActionPerformed
 
-    private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNombreActionPerformed
-
-    private void txtEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEstadoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtEstadoActionPerformed
-
-    private void ActualizarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ActualizarBotonActionPerformed
-        actualizar();
-        consulta();
-    }//GEN-LAST:event_ActualizarBotonActionPerformed
-
-    private void InactivarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InactivarBotonActionPerformed
-        // TODO add your handling code here:
-        flagBoton = 4;
-        inactivar();
-    }//GEN-LAST:event_InactivarBotonActionPerformed
-
     private void ModificarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModificarBotonActionPerformed
         // TODO add your handling code here:
         flagBoton = 2;
         modificar();
     }//GEN-LAST:event_ModificarBotonActionPerformed
-
-    private void ReactivarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReactivarBotonActionPerformed
-        // TODO add your handling code here:
-        flagBoton = 5;
-        reactivar();
-    }//GEN-LAST:event_ReactivarBotonActionPerformed
 
     private void EliminarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarBotonActionPerformed
         // TODO add your handling code here:
@@ -354,17 +302,35 @@ public class JTable extends javax.swing.JFrame {
         cancelar();
     }//GEN-LAST:event_CancelarBotonActionPerformed
 
+    private void InactivarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InactivarBotonActionPerformed
+        // TODO add your handling code here:
+        flagBoton = 4;
+        inactivar();
+    }//GEN-LAST:event_InactivarBotonActionPerformed
+
+    private void ReactivarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReactivarBotonActionPerformed
+        // TODO add your handling code here:
+        flagBoton = 5;
+        reactivar();
+    }//GEN-LAST:event_ReactivarBotonActionPerformed
+
+    private void ActualizarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ActualizarBotonActionPerformed
+        actualizar();
+    }//GEN-LAST:event_ActualizarBotonActionPerformed
+
     private void SalirBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalirBotonActionPerformed
         // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_SalirBotonActionPerformed
-
-    private void TablaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaMouseClicked
-        // TODO add your handling code here:
-        int fila = Tabla.getSelectedRow();
-        getFila(fila);
-    }//GEN-LAST:event_TablaMouseClicked
-
+    
+    private final String NOMBRE_TABLA = "gzz_cargos_proyecto";
+    private final String NOMBRE_INSTACIA = "Cargo Proyecto";
+    private final int CANTIDAD_DATOS = 3;
+    
+    private final String NOMBRE_DATO_1 = "CarProCod";
+    private final String NOMBRE_DATO_2 = "CarProNom";
+    private final String NOMBRE_DATO_3 = "CarProEstReg";
+    
     /**
      * @param args the command line arguments
      */
@@ -382,20 +348,20 @@ public class JTable extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(JTable.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JTable_Cargos_Proyecto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(JTable.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JTable_Cargos_Proyecto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(JTable.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JTable_Cargos_Proyecto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(JTable.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JTable_Cargos_Proyecto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new JTable().setVisible(true);
+                new JTable_Cargos_Proyecto().setVisible(true);
             }
         });
     }
@@ -416,28 +382,30 @@ public class JTable extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel tituloTabla;
     private javax.swing.JTextField txtCode;
     private javax.swing.JTextField txtEstado;
     private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
+        
 
+    
     private void consulta() {
-        String sql = "select * from c1z_tipo_clientes";
+        String sql = "select * from "+NOMBRE_TABLA;
 
         try {
             conet = con1.getConnection();
             st = conet.createStatement();
             rs = st.executeQuery(sql);
-            Object[] tipoClientes = new Object[3];
+            Object[] tipoClientes = new Object[CANTIDAD_DATOS];
             modelo = (DefaultTableModel) Tabla.getModel();
-            while (rs.next()) {
-                tipoClientes[0] = rs.getInt("TipCliCod");
-                tipoClientes[1] = rs.getString("TipCliNom");
-                tipoClientes[2] = rs.getString("TipCliEstReg");
+            
+            //INGRESE NOMBRES DATOS TABLA
+            while (rs.next()) { 
+                tipoClientes[0] = rs.getInt(NOMBRE_DATO_1);
+                tipoClientes[1] = rs.getString(NOMBRE_DATO_2);
+                tipoClientes[2] = rs.getString(NOMBRE_DATO_3);
                 modelo.addRow(tipoClientes);
             }
             Tabla.setModel(modelo);
@@ -447,11 +415,13 @@ public class JTable extends javax.swing.JFrame {
     }
 
     private void agregar() {
+        int auto = (int) modelo.getValueAt(modelo.getRowCount()-1,0) + 1;
         ActualizarBoton.setEnabled(true);
-        txtCode.setEnabled(true);
         txtNombre.setEnabled(true);
+        
+        txtCode.setText(auto+"");
         txtEstado.setText("A");
-        txtCode.setEditable(true);
+        
         txtNombre.setEditable(true);
         carFlaAct = 1;
     }
@@ -465,21 +435,21 @@ public class JTable extends javax.swing.JFrame {
                 //AgregarBoton.setEnabled(false);
                 if (((codigo.equals("")) || (nombre.equals("")))) {
                     JOptionPane.showMessageDialog(null, "Falta Ingresar Datos!");
-                    if(modelo.getRowCount() > 0)
-                        limpiarTabla();
                 } else {
                     if ((carFlaAct == 1)) {
                         try {
-                            String sql = "insert into c1z_tipo_clientes (TipCliCod, TipCliNom, TipCliEstReg) values('" + codigo + "','" + nombre + "','" + estado + "')";
+                            String sql = "insert into "+NOMBRE_TABLA+" ("+NOMBRE_DATO_1+", "+NOMBRE_DATO_2+", "+NOMBRE_DATO_3+")"
+                                                             + " values('" + codigo + "','" + nombre + "','" + estado + "')";
                             conet = con1.getConnection();
                             st = conet.createStatement();
                             st.executeUpdate(sql);
-                            JOptionPane.showMessageDialog(null, "Nuevo Tipo Cliente Registrado!");
+                            JOptionPane.showMessageDialog(null, "Nuevo "+NOMBRE_INSTACIA+" Registrado!");
                             limpiarFormulario();
                             desactivarFormulario();
                             limpiarTabla();
                         } catch (Exception e) {
                             System.out.println("Error SQL: " + e);
+                            consulta();
                         }
                     } else {
                         System.out.println("Flag Error");
@@ -490,21 +460,20 @@ public class JTable extends javax.swing.JFrame {
                 //ModificarBoton.setEnabled(false);
                 if (((nombre.equals("")))) {
                     JOptionPane.showMessageDialog(null, "Falta Ingresar Nombre!");
-                    if(modelo.getRowCount() > 0)
-                        limpiarTabla();
                 } else {
                     if ((carFlaAct == 1)) {
                         try {
-                            String sql = "update c1z_tipo_clientes set TipCliNom='" + nombre + "' where TipCliCod=" + codigo;
+                            String sql = "update "+NOMBRE_TABLA+" set "+NOMBRE_DATO_2+"='" + nombre + "' where "+NOMBRE_DATO_1+"=" + codigo;
                             conet = con1.getConnection();
                             st = conet.createStatement();
                             st.executeUpdate(sql);
-                            JOptionPane.showMessageDialog(null, "Tipo Cliente Actualizado!");
+                            JOptionPane.showMessageDialog(null, NOMBRE_INSTACIA+" Actualizado!");
                             limpiarFormulario();
                             desactivarFormulario();
                             limpiarTabla();
                         } catch (Exception e) {
                             System.out.println("Error SQL: " + e);
+                            consulta();
                         }
                     } else {
                         System.out.println("Flag Error");
@@ -515,16 +484,17 @@ public class JTable extends javax.swing.JFrame {
                 //EliminarBoton.setEnabled(false);
                 if (carFlaAct == 1) {
                     try {
-                        String sql = "update c1z_tipo_clientes set TipCliEstReg='*' where TipCliCod=" + codigo;
+                        String sql = "update "+NOMBRE_TABLA+" set "+NOMBRE_DATO_3+"='*' where "+NOMBRE_DATO_1+"=" + codigo;
                         conet = con1.getConnection();
                         st = conet.createStatement();
                         st.executeUpdate(sql);
-                        JOptionPane.showMessageDialog(null, "Tipo Cliente Eliminado!");
+                        JOptionPane.showMessageDialog(null, NOMBRE_INSTACIA+" Eliminado!");
                         limpiarFormulario();
                         desactivarFormulario();
                         limpiarTabla();
                     } catch (Exception e) {
                         System.out.println("Error SQL: " + e);
+                        consulta();
                     }
                 }
                 break;
@@ -532,16 +502,17 @@ public class JTable extends javax.swing.JFrame {
                 //InactivarBoton.setEnabled(false);
                 if (carFlaAct == 1) {
                     try {
-                        String sql = "update c1z_tipo_clientes set TipCliEstReg='I' where TipCliCod=" + codigo;
+                        String sql = "update "+NOMBRE_TABLA+" set "+NOMBRE_DATO_3+"='I' where "+NOMBRE_DATO_1+"=" + codigo;
                         conet = con1.getConnection();
                         st = conet.createStatement();
                         st.executeUpdate(sql);
-                        JOptionPane.showMessageDialog(null, "Tipo Cliente Inactivado!");
+                        JOptionPane.showMessageDialog(null, NOMBRE_INSTACIA+" Inactivado!");
                         limpiarFormulario();
                         desactivarFormulario();
                         limpiarTabla();
                     } catch (Exception e) {
                         System.out.println("Error SQL: " + e);
+                        consulta();
                     }
                 }
                 break;
@@ -550,16 +521,17 @@ public class JTable extends javax.swing.JFrame {
                 if (estado.equals("*") || estado.equals("I")) {
                     if (carFlaAct == 1) {
                         try {
-                            String sql = "update c1z_tipo_clientes set TipCliEstReg='A' where TipCliCod=" + codigo;
+                            String sql = "update "+NOMBRE_TABLA+" set "+NOMBRE_DATO_3+"='A' where "+NOMBRE_DATO_1+"=" + codigo;
                             conet = con1.getConnection();
                             st = conet.createStatement();
                             st.executeUpdate(sql);
-                            JOptionPane.showMessageDialog(null, "Tipo Cliente Reactivado!");
+                            JOptionPane.showMessageDialog(null, NOMBRE_INSTACIA+" Reactivado!");
                             limpiarFormulario();
                             desactivarFormulario();
                             limpiarTabla();
                         } catch (Exception e) {
                             System.out.println("Error SQL: " + e);
+                            consulta();
                         }
                     }
                 } else {
@@ -571,7 +543,7 @@ public class JTable extends javax.swing.JFrame {
                 break;
         }
         flagBoton = 0;
-
+        
     }
 
     private void cancelar() {
@@ -648,27 +620,7 @@ public class JTable extends javax.swing.JFrame {
             txtEstado.setEditable(false);
             txtEstado.setEnabled(false);
             carFlaAct = 1;
-
-            //String sql = "select * from c1z_tipo_clientes";
         }
-        /*String sql = "select * from c1z_tipo_clientes";
-        
-        try {
-            conet = con1.getConnection();
-            st = conet.createStatement();
-            rs = st.executeQuery(sql);
-            Object[] tipoClientes = new Object[3];
-            modelo = (DefaultTableModel) Tabla.getModel();
-            while (rs.next()) {
-                tipoClientes[0] = rs.getInt("TipCliCod");
-                tipoClientes[1] = rs.getString("TipCliNom");
-                tipoClientes[2] = rs.getString("TipCliEstReg");
-                modelo.addRow(tipoClientes);
-            }
-            Tabla.setModel(modelo);
-            
-        } catch (Exception e) {
-        }*/
     }
 
     private void inactivar() {
@@ -693,7 +645,6 @@ public class JTable extends javax.swing.JFrame {
             txtEstado.setEnabled(false);
             carFlaAct = 1;
 
-            //String sql = "select * from c1z_tipo_clientes";
         }
     }
 
@@ -718,13 +669,6 @@ public class JTable extends javax.swing.JFrame {
             txtEstado.setEditable(false);
             txtEstado.setEnabled(false);
             carFlaAct = 1;
-
-            //String sql = "select * from c1z_tipo_clientes";
         }
-    }
-
-    private int getFila(int fila) {
-
-        return fila;
     }
 }
