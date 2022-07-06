@@ -415,7 +415,12 @@ public class JTable_Cargos_Proyecto extends javax.swing.JFrame {
     }
 
     private void agregar() {
-        int auto = (int) modelo.getValueAt(modelo.getRowCount()-1,0) + 1;
+        int auto;
+        if(modelo.getRowCount() != 0){
+            auto = (int) modelo.getValueAt(modelo.getRowCount()-1,0) + 1;
+        } else {
+            auto = 1;
+        }
         ActualizarBoton.setEnabled(true);
         txtNombre.setEnabled(true);
         
