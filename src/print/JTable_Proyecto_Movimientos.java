@@ -271,10 +271,10 @@ public class JTable_Proyecto_Movimientos extends javax.swing.JFrame {
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+            .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
-                .addGap(116, 116, 116))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("OPCIONES"));
@@ -386,14 +386,14 @@ public class JTable_Proyecto_Movimientos extends javax.swing.JFrame {
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(tituloTabla, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 112, Short.MAX_VALUE)
+                        .addGap(0, 139, Short.MAX_VALUE)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(74, 74, 74)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 101, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(218, 218, 218))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -661,11 +661,11 @@ public class JTable_Proyecto_Movimientos extends javax.swing.JFrame {
                 } else {
                     if ((carFlaAct == 1)) {
                         try {
-                            String sql = "update "+NOMBRE_TABLA+" set "+NOMBRE_DATO_1+"='" + codigo +NOMBRE_DATO_2+"='" + tipoProyecto 
-                                                                       +NOMBRE_DATO_3+"='" + secuencia +NOMBRE_DATO_4+"='" + personal +NOMBRE_DATO_5+"='" + cargoProyecto 
-                                                                       +NOMBRE_DATO_6+"='" + actividadEtapa +NOMBRE_DATO_7+"='" + etapaProyecto
-                                                                       +NOMBRE_DATO_8+"='" + fRegA +NOMBRE_DATO_9+"='" + fRegM
-                                                                       +NOMBRE_DATO_10+"='" + fRegD +NOMBRE_DATO_11+"='" + tiempoH
+                            String sql = "update "+NOMBRE_TABLA+" set "+NOMBRE_DATO_1+"='" + codigo +"', "+ NOMBRE_DATO_2+"='" + tipoProyecto +"', "
+                                                                       +NOMBRE_DATO_3+"='" + secuencia +"', "+ NOMBRE_DATO_4+"='" + personal +"', "+ NOMBRE_DATO_5+"='" + cargoProyecto +"', "
+                                                                       +NOMBRE_DATO_6+"='" + actividadEtapa +"', "+ NOMBRE_DATO_7+"='" + etapaProyecto +"', "
+                                                                       +NOMBRE_DATO_8+"='" + fRegA +"', "+ NOMBRE_DATO_9+"='" + fRegM +"', "
+                                                                       +NOMBRE_DATO_10+"='" + fRegD +"', "+ NOMBRE_DATO_11+"='" + tiempoH +"', "
                                                                        +NOMBRE_DATO_12+"='" + tiempoM
                                                                        + "' where ("+NOMBRE_DATO_1+"='" + codigo +"' AND "+NOMBRE_DATO_2+"='" + tipoProyecto
                                                                                      +"' AND "+NOMBRE_DATO_3+"='" + secuencia +"' AND "+NOMBRE_DATO_4+"='" + personal 
@@ -871,22 +871,23 @@ public class JTable_Proyecto_Movimientos extends javax.swing.JFrame {
         if (fila == -1) {
             JOptionPane.showMessageDialog(null, "Ninguna fila seleccionada");
         } else {
-            String codigo = (String) Tabla.getValueAt(fila, 0);
-            String tipoProyecto = (String) Tabla.getValueAt(fila, 1);
-            String secuencia = (String) Tabla.getValueAt(fila, 2);
+            String codigo = (String) Tabla.getValueAt(fila, 0).toString();
+            String tipoProyecto = (String) Tabla.getValueAt(fila, 1).toString();
+            String secuencia = (String) Tabla.getValueAt(fila, 2).toString();
 
-            String personal = (String) Tabla.getValueAt(fila, 3);
-            String cargoProyecto = (String) Tabla.getValueAt(fila, 4);
-            String actividadEtapa = (String) Tabla.getValueAt(fila, 5);
+            String personal = (String) Tabla.getValueAt(fila, 3).toString();
+            String cargoProyecto = (String) Tabla.getValueAt(fila, 4).toString();
+            String actividadEtapa = (String) Tabla.getValueAt(fila, 5).toString();
 
-            String etapaProyecto = (String) Tabla.getValueAt(fila, 6);
-            String fReg = (String) Tabla.getValueAt(fila, 7);
+            String etapaProyecto = (String) Tabla.getValueAt(fila, 6).toString();
+            String fReg = (String) Tabla.getValueAt(fila, 7).toString();
             String fRegA = fReg.substring(0, fReg.indexOf("/"));
-            String fRegM = fReg.substring(fReg.indexOf("/"), fReg.lastIndexOf("/"));
-            String fRegD = fReg.substring(fReg.lastIndexOf("/"), fReg.length());
-            String tiempoH = (String) Tabla.getValueAt(fila, 8);
-            String tiempoM = (String) Tabla.getValueAt(fila, 9);
-            String estado = (String) Tabla.getValueAt(fila, 10);
+            String fRegM = fReg.substring(fReg.indexOf("/")+1, fReg.lastIndexOf("/"));
+            String fRegD = fReg.substring(fReg.lastIndexOf("/")+1, fReg.length());
+            String tiempo = (String) Tabla.getValueAt(fila, 8).toString();
+            String tiempoH = tiempo.substring(0, tiempo.indexOf(":"));
+            String tiempoM = tiempo.substring(tiempo.lastIndexOf(":")+1, tiempo.length());
+            String estado = (String) Tabla.getValueAt(fila, 9).toString();
             
             rellenarFormulario(codigo, tipoProyecto, secuencia, personal, cargoProyecto, actividadEtapa, 
                                etapaProyecto, fRegA, fRegM, fRegD, tiempoH, tiempoM, estado);
@@ -904,22 +905,23 @@ public class JTable_Proyecto_Movimientos extends javax.swing.JFrame {
         if (fila == -1) {
             JOptionPane.showMessageDialog(null, "Ninguna fila seleccionada");
         } else {
-            String codigo = (String) Tabla.getValueAt(fila, 0);
-            String tipoProyecto = (String) Tabla.getValueAt(fila, 1);
-            String secuencia = (String) Tabla.getValueAt(fila, 2);
+            String codigo = (String) Tabla.getValueAt(fila, 0).toString();
+            String tipoProyecto = (String) Tabla.getValueAt(fila, 1).toString();
+            String secuencia = (String) Tabla.getValueAt(fila, 2).toString();
 
-            String personal = (String) Tabla.getValueAt(fila, 3);
-            String cargoProyecto = (String) Tabla.getValueAt(fila, 4);
-            String actividadEtapa = (String) Tabla.getValueAt(fila, 5);
+            String personal = (String) Tabla.getValueAt(fila, 3).toString();
+            String cargoProyecto = (String) Tabla.getValueAt(fila, 4).toString();
+            String actividadEtapa = (String) Tabla.getValueAt(fila, 5).toString();
 
-            String etapaProyecto = (String) Tabla.getValueAt(fila, 6);
-            String fReg = (String) Tabla.getValueAt(fila, 7);
+            String etapaProyecto = (String) Tabla.getValueAt(fila, 6).toString();
+            String fReg = (String) Tabla.getValueAt(fila, 7).toString();
             String fRegA = fReg.substring(0, fReg.indexOf("/"));
-            String fRegM = fReg.substring(fReg.indexOf("/"), fReg.lastIndexOf("/"));
-            String fRegD = fReg.substring(fReg.lastIndexOf("/"), fReg.length());
-            String tiempoH = (String) Tabla.getValueAt(fila, 8);
-            String tiempoM = (String) Tabla.getValueAt(fila, 9);
-            String estado = (String) Tabla.getValueAt(fila, 10);
+            String fRegM = fReg.substring(fReg.indexOf("/")+1, fReg.lastIndexOf("/"));
+            String fRegD = fReg.substring(fReg.lastIndexOf("/")+1, fReg.length());
+            String tiempo = (String) Tabla.getValueAt(fila, 8).toString();
+            String tiempoH = tiempo.substring(0, tiempo.indexOf(":"));
+            String tiempoM = tiempo.substring(tiempo.lastIndexOf(":")+1, tiempo.length());
+            String estado = (String) Tabla.getValueAt(fila, 9).toString();
             
             rellenarFormulario(codigo, tipoProyecto, secuencia, personal, cargoProyecto, actividadEtapa, 
                                etapaProyecto, fRegA, fRegM, fRegD, tiempoH, tiempoM, estado);
@@ -938,22 +940,23 @@ public class JTable_Proyecto_Movimientos extends javax.swing.JFrame {
         if (fila == -1) {
             JOptionPane.showMessageDialog(null, "Ninguna fila seleccionada");
         } else {
-            String codigo = (String) Tabla.getValueAt(fila, 0);
-            String tipoProyecto = (String) Tabla.getValueAt(fila, 1);
-            String secuencia = (String) Tabla.getValueAt(fila, 2);
+            String codigo = (String) Tabla.getValueAt(fila, 0).toString();
+            String tipoProyecto = (String) Tabla.getValueAt(fila, 1).toString();
+            String secuencia = (String) Tabla.getValueAt(fila, 2).toString();
 
-            String personal = (String) Tabla.getValueAt(fila, 3);
-            String cargoProyecto = (String) Tabla.getValueAt(fila, 4);
-            String actividadEtapa = (String) Tabla.getValueAt(fila, 5);
+            String personal = (String) Tabla.getValueAt(fila, 3).toString();
+            String cargoProyecto = (String) Tabla.getValueAt(fila, 4).toString();
+            String actividadEtapa = (String) Tabla.getValueAt(fila, 5).toString();
 
-            String etapaProyecto = (String) Tabla.getValueAt(fila, 6);
-            String fReg = (String) Tabla.getValueAt(fila, 7);
+            String etapaProyecto = (String) Tabla.getValueAt(fila, 6).toString();
+            String fReg = (String) Tabla.getValueAt(fila, 7).toString();
             String fRegA = fReg.substring(0, fReg.indexOf("/"));
-            String fRegM = fReg.substring(fReg.indexOf("/"), fReg.lastIndexOf("/"));
-            String fRegD = fReg.substring(fReg.lastIndexOf("/"), fReg.length());
-            String tiempoH = (String) Tabla.getValueAt(fila, 8);
-            String tiempoM = (String) Tabla.getValueAt(fila, 9);
-            String estado = (String) Tabla.getValueAt(fila, 10);
+            String fRegM = fReg.substring(fReg.indexOf("/")+1, fReg.lastIndexOf("/"));
+            String fRegD = fReg.substring(fReg.lastIndexOf("/")+1, fReg.length());
+            String tiempo = (String) Tabla.getValueAt(fila, 8).toString();
+            String tiempoH = tiempo.substring(0, tiempo.indexOf(":"));
+            String tiempoM = tiempo.substring(tiempo.lastIndexOf(":")+1, tiempo.length());
+            String estado = (String) Tabla.getValueAt(fila, 9).toString();
             
             rellenarFormulario(codigo, tipoProyecto, secuencia, personal, cargoProyecto, actividadEtapa, 
                                etapaProyecto, fRegA, fRegM, fRegD, tiempoH, tiempoM, estado);
@@ -969,22 +972,23 @@ public class JTable_Proyecto_Movimientos extends javax.swing.JFrame {
         if (fila == -1) {
             JOptionPane.showMessageDialog(null, "Ninguna fila seleccionada");
         } else {
-            String codigo = (String) Tabla.getValueAt(fila, 0);
-            String tipoProyecto = (String) Tabla.getValueAt(fila, 1);
-            String secuencia = (String) Tabla.getValueAt(fila, 2);
+            String codigo = (String) Tabla.getValueAt(fila, 0).toString();
+            String tipoProyecto = (String) Tabla.getValueAt(fila, 1).toString();
+            String secuencia = (String) Tabla.getValueAt(fila, 2).toString();
 
-            String personal = (String) Tabla.getValueAt(fila, 3);
-            String cargoProyecto = (String) Tabla.getValueAt(fila, 4);
-            String actividadEtapa = (String) Tabla.getValueAt(fila, 5);
+            String personal = (String) Tabla.getValueAt(fila, 3).toString();
+            String cargoProyecto = (String) Tabla.getValueAt(fila, 4).toString();
+            String actividadEtapa = (String) Tabla.getValueAt(fila, 5).toString();
 
-            String etapaProyecto = (String) Tabla.getValueAt(fila, 6);
-            String fReg = (String) Tabla.getValueAt(fila, 7);
+            String etapaProyecto = (String) Tabla.getValueAt(fila, 6).toString();
+            String fReg = (String) Tabla.getValueAt(fila, 7).toString();
             String fRegA = fReg.substring(0, fReg.indexOf("/"));
-            String fRegM = fReg.substring(fReg.indexOf("/"), fReg.lastIndexOf("/"));
-            String fRegD = fReg.substring(fReg.lastIndexOf("/"), fReg.length());
-            String tiempoH = (String) Tabla.getValueAt(fila, 8);
-            String tiempoM = (String) Tabla.getValueAt(fila, 9);
-            String estado = (String) Tabla.getValueAt(fila, 10);
+            String fRegM = fReg.substring(fReg.indexOf("/")+1, fReg.lastIndexOf("/"));
+            String fRegD = fReg.substring(fReg.lastIndexOf("/")+1, fReg.length());
+            String tiempo = (String) Tabla.getValueAt(fila, 8).toString();
+            String tiempoH = tiempo.substring(0, tiempo.indexOf(":"));
+            String tiempoM = tiempo.substring(tiempo.lastIndexOf(":")+1, tiempo.length());
+            String estado = (String) Tabla.getValueAt(fila, 9).toString();
             
             rellenarFormulario(codigo, tipoProyecto, secuencia, personal, cargoProyecto, actividadEtapa, 
                                etapaProyecto, fRegA, fRegM, fRegD, tiempoH, tiempoM, estado);

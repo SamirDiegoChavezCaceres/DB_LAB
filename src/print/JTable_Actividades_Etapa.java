@@ -203,10 +203,10 @@ public class JTable_Actividades_Etapa extends javax.swing.JFrame {
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+            .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
-                .addGap(116, 116, 116))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("OPCIONES"));
@@ -528,7 +528,7 @@ public class JTable_Actividades_Etapa extends javax.swing.JFrame {
         String nombre = txtNombre.getText();
         String tiempo_estandar = txtTiempoEst.getText();
         String descripcion = txtDescr.getText();
-        String costo = txtDescr.getText();
+        String costo = txtCosto.getText();
         String estado = txtEstado.getText();
         switch (flagBoton) {
             case 1:
@@ -733,12 +733,12 @@ public class JTable_Actividades_Etapa extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Ninguna fila seleccionada");
         } else {
             idc = Integer.parseInt((String) Tabla.getValueAt(fila, 0).toString());
-            String secuencia = (String) Tabla.getValueAt(fila, 1);
-            String nombre = (String) Tabla.getValueAt(fila, 2);
-            String tiempoEst = (String) Tabla.getValueAt(fila, 3);
-            String descripcion = (String) Tabla.getValueAt(fila, 4);
-            String costo = (String) Tabla.getValueAt(fila, 5);
-            String estado = (String) Tabla.getValueAt(fila, 6);
+            String secuencia = (String) Tabla.getValueAt(fila, 1).toString();
+            String nombre = (String) Tabla.getValueAt(fila, 2).toString();
+            String tiempoEst = (String) Tabla.getValueAt(fila, 3).toString();
+            String descripcion = (String) Tabla.getValueAt(fila, 4).toString();
+            String costo = (String) Tabla.getValueAt(fila, 5).toString();
+            String estado = (String) Tabla.getValueAt(fila, 6).toString();
 
             rellenarFormulario("" + idc, secuencia, nombre, tiempoEst, descripcion, costo, estado);
             
@@ -756,12 +756,12 @@ public class JTable_Actividades_Etapa extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Ninguna fila seleccionada");
         } else {
             idc = Integer.parseInt((String) Tabla.getValueAt(fila, 0).toString());
-            String secuencia = (String) Tabla.getValueAt(fila, 1);
-            String nombre = (String) Tabla.getValueAt(fila, 2);
-            String tiempoEst = (String) Tabla.getValueAt(fila, 3);
-            String descripcion = (String) Tabla.getValueAt(fila, 4);
-            String costo = (String) Tabla.getValueAt(fila, 5);
-            String estado = (String) Tabla.getValueAt(fila, 6);
+            String secuencia = (String) Tabla.getValueAt(fila, 1).toString();
+            String nombre = (String) Tabla.getValueAt(fila, 2).toString();
+            String tiempoEst = (String) Tabla.getValueAt(fila, 3).toString();
+            String descripcion = (String) Tabla.getValueAt(fila, 4).toString();
+            String costo = (String) Tabla.getValueAt(fila, 5).toString();
+            String estado = (String) Tabla.getValueAt(fila, 6).toString();
             
             rellenarFormulario("" + idc, secuencia, nombre, tiempoEst, descripcion, costo, estado);
             activarFormulario();
@@ -781,12 +781,12 @@ public class JTable_Actividades_Etapa extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Ninguna fila seleccionada");
         } else {
             idc = Integer.parseInt((String) Tabla.getValueAt(fila, 0).toString());
-            String secuencia = (String) Tabla.getValueAt(fila, 1);
-            String nombre = (String) Tabla.getValueAt(fila, 2);
-            String tiempoEst = (String) Tabla.getValueAt(fila, 3);
-            String descripcion = (String) Tabla.getValueAt(fila, 4);
-            String costo = (String) Tabla.getValueAt(fila, 5);
-            String estado = (String) Tabla.getValueAt(fila, 6);
+            String secuencia = (String) Tabla.getValueAt(fila, 1).toString();
+            String nombre = (String) Tabla.getValueAt(fila, 2).toString();
+            String tiempoEst = (String) Tabla.getValueAt(fila, 3).toString();
+            String descripcion = (String) Tabla.getValueAt(fila, 4).toString();
+            String costo = (String) Tabla.getValueAt(fila, 5).toString();
+            String estado = (String) Tabla.getValueAt(fila, 6).toString();
             
             rellenarFormulario("" + idc, secuencia, nombre, tiempoEst, descripcion, costo, estado);
             desactivarFormularioEdic();
@@ -802,12 +802,12 @@ public class JTable_Actividades_Etapa extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Ninguna fila seleccionada");
         } else {
             idc = Integer.parseInt((String) Tabla.getValueAt(fila, 0).toString());
-            String secuencia = (String) Tabla.getValueAt(fila, 1);
-            String nombre = (String) Tabla.getValueAt(fila, 2);
-            String tiempoEst = (String) Tabla.getValueAt(fila, 3);
-            String descripcion = (String) Tabla.getValueAt(fila, 4);
-            String costo = (String) Tabla.getValueAt(fila, 5);
-            String estado = (String) Tabla.getValueAt(fila, 6);
+            String secuencia = (String) Tabla.getValueAt(fila, 1).toString();
+            String nombre = (String) Tabla.getValueAt(fila, 2).toString();
+            String tiempoEst = (String) Tabla.getValueAt(fila, 3).toString();
+            String descripcion = (String) Tabla.getValueAt(fila, 4).toString();
+            String costo = (String) Tabla.getValueAt(fila, 5).toString();
+            String estado = (String) Tabla.getValueAt(fila, 6).toString();
             
             rellenarFormulario("" + idc, secuencia, nombre, tiempoEst, descripcion, costo, estado);
             desactivarFormularioEdic();
