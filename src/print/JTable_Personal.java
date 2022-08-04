@@ -625,7 +625,7 @@ public class JTable_Personal extends javax.swing.JFrame {
                         try {
                             String sql = "insert into " + NOMBRE_TABLA + " (" + NOMBRE_DATO_1 + ", " + NOMBRE_DATO_2 + ", " + NOMBRE_DATO_3 + ", " + NOMBRE_DATO_4 
                                     + ", " + NOMBRE_DATO_5 + ", " + NOMBRE_DATO_6 + ", " + NOMBRE_DATO_7 + ", " + NOMBRE_DATO_8 + ", " + NOMBRE_DATO_9 + ") "
-                                    + "values('" + codigo + "','" + nombre + "','" + cargo + "','" + fecIngDia + "','" + fecIngMes + "','" + fecIngAnio
+                                    + "values('" + codigo + "','" + nombre + "','" + cargo + "','" + fecIngAnio + "','" + fecIngMes + "','" + fecIngDia
                                     + "','" + nivExp + "','" + estOcuCod + "','" + estado + "')";
                             conet = con1.getConnection();
                             st = conet.createStatement();
@@ -650,7 +650,7 @@ public class JTable_Personal extends javax.swing.JFrame {
                     if ((carFlaAct == 1)) {
                         try {
                             String sql = "update " + NOMBRE_TABLA + " set " + NOMBRE_DATO_2 + "='" + nombre + "', " + NOMBRE_DATO_3 + "='" + cargo + "', "
-                                       + NOMBRE_DATO_4 + "='" + fecIngDia + "', " + NOMBRE_DATO_5 + "='" + fecIngMes + "', " + NOMBRE_DATO_6 + "='" + fecIngAnio
+                                       + NOMBRE_DATO_4 + "='" + fecIngAnio + "', " + NOMBRE_DATO_5 + "='" + fecIngMes + "', " + NOMBRE_DATO_6 + "='" + fecIngDia
                                        + "', " + NOMBRE_DATO_7 + "='" + nivExp + "', " + NOMBRE_DATO_8 + "='" + estOcuCod + "' where " + NOMBRE_DATO_1 + "=" + codigo;
                             conet = con1.getConnection();
                             st = conet.createStatement();
