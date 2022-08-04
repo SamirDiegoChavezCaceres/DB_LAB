@@ -8,16 +8,16 @@ package print;
 import config.conexion;
 import java.sql.*;
 import javax.swing.*;
-import javax.swing.table.*;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author Usuario
  */
-public class JTable_Cargos_Proyecto extends javax.swing.JFrame {
+public class JTable_Actividades_Etapa extends javax.swing.JFrame {
 
     /**
-     * Creates new form JTable_Cargos_Proyecto
+     * Creates new form JTable_Actividades_Etapa
      */
     conexion con1 = new conexion();
     Connection conet;
@@ -27,15 +27,14 @@ public class JTable_Cargos_Proyecto extends javax.swing.JFrame {
     int idc;
     int flagBoton = 0;
     int carFlaAct = 0;
-    
-    public JTable_Cargos_Proyecto() {
+    public JTable_Actividades_Etapa() {
         initComponents();
-        tituloTabla.setText("GZZ_CARGOS_PROYECTO");
+        tituloTabla.setText("P1M_ACTIVIDADES_ETAPA");
         setLocationRelativeTo(null);
         ActualizarBoton.setEnabled(false);
         consulta();
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -45,6 +44,8 @@ public class JTable_Cargos_Proyecto extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
         tituloTabla = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -53,6 +54,14 @@ public class JTable_Cargos_Proyecto extends javax.swing.JFrame {
         txtNombre = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         txtEstado = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        txtSecuencia = new javax.swing.JTextField();
+        txtTiempoEst = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        txtDescr = new javax.swing.JTextField();
+        txtCosto = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         Tabla = new javax.swing.JTable();
@@ -66,6 +75,10 @@ public class JTable_Cargos_Proyecto extends javax.swing.JFrame {
         ActualizarBoton = new javax.swing.JButton();
         SalirBoton = new javax.swing.JButton();
 
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane1.setViewportView(jTextArea1);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         tituloTabla.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -76,15 +89,34 @@ public class JTable_Cargos_Proyecto extends javax.swing.JFrame {
         jLabel2.setText("Codigo");
 
         txtCode.setEditable(false);
+        txtCode.setEnabled(false);
         txtCode.setName(""); // NOI18N
 
         jLabel3.setText("Nombre");
 
         txtNombre.setEditable(false);
+        txtNombre.setEnabled(false);
 
         jLabel4.setText("Estado Registro");
 
         txtEstado.setEditable(false);
+        txtEstado.setEnabled(false);
+
+        jLabel1.setText("Secuencia");
+
+        txtSecuencia.setEnabled(false);
+
+        txtTiempoEst.setEnabled(false);
+
+        jLabel5.setText("Tiempo Estandar");
+
+        jLabel6.setText("Descripción");
+
+        jLabel7.setText("Costo");
+
+        txtDescr.setEnabled(false);
+
+        txtCosto.setEnabled(false);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -92,33 +124,60 @@ public class JTable_Cargos_Proyecto extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtCode, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(txtDescr)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtCosto, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtTiempoEst, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtSecuencia, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtCode, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 176, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(10, 10, 10)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(txtCode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(txtCode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(10, 10, 10)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(txtSecuencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(10, 10, 10)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(txtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(20, Short.MAX_VALUE))
+                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(10, 10, 10)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtTiempoEst, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(6, 6, 6)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtDescr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(6, 6, 6)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtCosto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("BASE DE DATOS"));
@@ -128,7 +187,7 @@ public class JTable_Cargos_Proyecto extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Codigo", "Descripcion", "Estado"
+                "Codigo", "Secuencia", "Nombre", "Tiempo Estandar", "Descripcion", "Costo", "Estado"
             }
         ));
         jScrollPane2.setViewportView(Tabla);
@@ -139,15 +198,15 @@ public class JTable_Cargos_Proyecto extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 433, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane2)
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(116, 116, 116))
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("OPCIONES"));
@@ -213,40 +272,40 @@ public class JTable_Cargos_Proyecto extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(InactivarBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(AgregarBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(52, 52, 52)
+                .addComponent(AgregarBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(ModificarBoton, javax.swing.GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE)
-                    .addComponent(ReactivarBoton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(ModificarBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(EliminarBoton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(ActualizarBoton, javax.swing.GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(CancelarBoton, javax.swing.GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE)
-                    .addComponent(SalirBoton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(SalirBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(CancelarBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(EliminarBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(InactivarBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(ReactivarBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(ActualizarBoton, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(67, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(AgregarBoton)
                     .addComponent(ModificarBoton)
                     .addComponent(EliminarBoton)
-                    .addComponent(CancelarBoton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(InactivarBoton)
                     .addComponent(ReactivarBoton)
-                    .addComponent(ActualizarBoton)
-                    .addComponent(SalirBoton))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(ActualizarBoton))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(SalirBoton)
+                    .addComponent(CancelarBoton)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -255,12 +314,15 @@ public class JTable_Cargos_Proyecto extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(tituloTabla, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(tituloTabla, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(90, 90, 90))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -269,11 +331,11 @@ public class JTable_Cargos_Proyecto extends javax.swing.JFrame {
                 .addComponent(tituloTabla, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 185, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -322,15 +384,7 @@ public class JTable_Cargos_Proyecto extends javax.swing.JFrame {
         // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_SalirBotonActionPerformed
-    
-    private final String NOMBRE_TABLA = "gzz_cargos_proyecto";
-    private final String NOMBRE_INSTACIA = "Cargo Proyecto";
-    private final int CANTIDAD_DATOS = 3;
-    
-    private final String NOMBRE_DATO_1 = "CarProCod";
-    private final String NOMBRE_DATO_2 = "CarProNom";
-    private final String NOMBRE_DATO_3 = "CarProEstReg";
-    
+
     /**
      * @param args the command line arguments
      */
@@ -348,20 +402,20 @@ public class JTable_Cargos_Proyecto extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(JTable_Cargos_Proyecto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JTable_Actividades_Etapa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(JTable_Cargos_Proyecto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JTable_Actividades_Etapa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(JTable_Cargos_Proyecto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JTable_Actividades_Etapa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(JTable_Cargos_Proyecto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JTable_Actividades_Etapa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new JTable_Cargos_Proyecto().setVisible(true);
+                new JTable_Actividades_Etapa().setVisible(true);
             }
         });
     }
@@ -376,20 +430,40 @@ public class JTable_Cargos_Proyecto extends javax.swing.JFrame {
     private javax.swing.JButton ReactivarBoton;
     private javax.swing.JButton SalirBoton;
     private javax.swing.JTable Tabla;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JLabel tituloTabla;
     private javax.swing.JTextField txtCode;
+    private javax.swing.JTextField txtCosto;
+    private javax.swing.JTextField txtDescr;
     private javax.swing.JTextField txtEstado;
     private javax.swing.JTextField txtNombre;
+    private javax.swing.JTextField txtSecuencia;
+    private javax.swing.JTextField txtTiempoEst;
     // End of variables declaration//GEN-END:variables
-        
-
+    
+    private final String NOMBRE_TABLA = "p1m_actividades_etapa";
+    private final String NOMBRE_INSTACIA = "Actividad Etapa";
+    private final int CANTIDAD_DATOS = 7;
+    
+    private final String NOMBRE_DATO_1 = "ActEtaCod";
+    private final String NOMBRE_DATO_2 = "ActEtaSec";
+    private final String NOMBRE_DATO_3 = "ActEtaNom";
+    private final String NOMBRE_DATO_4 = "ActEtaTpoEst";
+    private final String NOMBRE_DATO_5 = "ActEtaDes";
+    private final String NOMBRE_DATO_6 = "ActEtaCos";
+    private final String NOMBRE_DATO_7 = "ActEtaEstReg";
     
     private void consulta() {
         String sql = "select * from "+NOMBRE_TABLA;
@@ -404,8 +478,12 @@ public class JTable_Cargos_Proyecto extends javax.swing.JFrame {
             //INGRESE NOMBRES DATOS TABLA
             while (rs.next()) { 
                 tipoClientes[0] = rs.getInt(NOMBRE_DATO_1);
-                tipoClientes[1] = rs.getString(NOMBRE_DATO_2);
+                tipoClientes[1] = rs.getInt(NOMBRE_DATO_2);
                 tipoClientes[2] = rs.getString(NOMBRE_DATO_3);
+                tipoClientes[3] = rs.getInt(NOMBRE_DATO_4);
+                tipoClientes[4] = rs.getString(NOMBRE_DATO_5);
+                tipoClientes[5] = rs.getInt(NOMBRE_DATO_6);
+                tipoClientes[6] = rs.getString(NOMBRE_DATO_7);
                 modelo.addRow(tipoClientes);
             }
             Tabla.setModel(modelo);
@@ -422,38 +500,58 @@ public class JTable_Cargos_Proyecto extends javax.swing.JFrame {
             auto = 1;
         }
         ActualizarBoton.setEnabled(true);
-        txtNombre.setEnabled(true);
         
+        //init not default values
+        txtSecuencia.setEnabled(true);
+        txtNombre.setEnabled(true);
+        txtTiempoEst.setEnabled(true);
+        txtDescr.setEnabled(true);
+        txtCosto.setEnabled(true);
+        
+        //default values
         txtCode.setText(auto+"");
         txtEstado.setText("A");
         
+        //enable edit
+        txtSecuencia.setEditable(true);
         txtNombre.setEditable(true);
+        txtTiempoEst.setEditable(true);
+        txtDescr.setEditable(true);
+        txtCosto.setEditable(true);
+        
         carFlaAct = 1;
     }
 
     private void actualizar() {
         String codigo = txtCode.getText();
+        String secuencia = txtSecuencia.getText();
         String nombre = txtNombre.getText();
+        String tiempo_estandar = txtTiempoEst.getText();
+        String descripcion = txtDescr.getText();
+        String costo = txtCosto.getText();
         String estado = txtEstado.getText();
         switch (flagBoton) {
             case 1:
                 //AgregarBoton.setEnabled(false);
-                if (((codigo.equals("")) || (nombre.equals("")))) {
+                if (((codigo.equals("")) || (secuencia.equals("")) || (nombre.equals("")) || 
+                        (tiempo_estandar.equals("")) || (descripcion.equals("")) || (costo.equals("")))) {
                     JOptionPane.showMessageDialog(null, "Falta Ingresar Datos!");
                 } else {
                     if ((carFlaAct == 1)) {
                         try {
-                            String sql = "insert into "+NOMBRE_TABLA+" ("+NOMBRE_DATO_1+", "+NOMBRE_DATO_2+", "+NOMBRE_DATO_3+")"
-                                                             + " values('" + codigo + "','" + nombre + "','" + estado + "')";
+                            String sql = "insert into "+NOMBRE_TABLA+" ("+NOMBRE_DATO_1+", "+NOMBRE_DATO_2+", "+NOMBRE_DATO_3+", "
+                                                      +NOMBRE_DATO_4+", "+NOMBRE_DATO_5+", "+NOMBRE_DATO_6+", "+NOMBRE_DATO_7+")"
+                                                        + " values('" + codigo + "','" + secuencia + "','" + nombre + "','"
+                                                        + tiempo_estandar + "','" + descripcion + "','" + costo + "','" + estado + "')";
                             conet = con1.getConnection();
                             st = conet.createStatement();
                             st.executeUpdate(sql);
                             JOptionPane.showMessageDialog(null, "Nuevo "+NOMBRE_INSTACIA+" Registrado!");
                             limpiarFormulario();
-                            desactivarFormulario();
+                            desactivarFormularioEdic();
                             limpiarTabla();
                         } catch (Exception e) {
-                            System.out.println("Error SQL: " + e);
+                            System.out.println("Error SQL: " + e.getMessage());
                             consulta();
                         }
                     } else {
@@ -463,21 +561,25 @@ public class JTable_Cargos_Proyecto extends javax.swing.JFrame {
                 break;
             case 2:
                 //ModificarBoton.setEnabled(false);
-                if (((nombre.equals("")))) {
-                    JOptionPane.showMessageDialog(null, "Falta Ingresar Nombre!");
+                if ((secuencia.equals("")) || (nombre.equals("")) || (tiempo_estandar.equals("")) 
+                        || (descripcion.equals("")) || (costo.equals(""))) {
+                    JOptionPane.showMessageDialog(null, "Falta Ingresar Datos!");
                 } else {
                     if ((carFlaAct == 1)) {
                         try {
-                            String sql = "update "+NOMBRE_TABLA+" set "+NOMBRE_DATO_2+"='" + nombre + "' where "+NOMBRE_DATO_1+"=" + codigo;
+                            String sql = "update "+NOMBRE_TABLA+" set "+NOMBRE_DATO_2+"='" + secuencia +"', "+NOMBRE_DATO_3+"='" + nombre + "', "
+                                                                       +NOMBRE_DATO_4+"='" + tiempo_estandar +"', "+NOMBRE_DATO_5+"='" + descripcion + "', "
+                                                                       +NOMBRE_DATO_6+"='" + costo 
+                                                                       + "' where "+NOMBRE_DATO_1+"=" + codigo;
                             conet = con1.getConnection();
                             st = conet.createStatement();
                             st.executeUpdate(sql);
                             JOptionPane.showMessageDialog(null, NOMBRE_INSTACIA+" Actualizado!");
                             limpiarFormulario();
-                            desactivarFormulario();
+                            desactivarFormularioEdic();
                             limpiarTabla();
                         } catch (Exception e) {
-                            System.out.println("Error SQL: " + e);
+                            System.out.println("Error SQL: " + e.getMessage());
                             consulta();
                         }
                     } else {
@@ -489,16 +591,16 @@ public class JTable_Cargos_Proyecto extends javax.swing.JFrame {
                 //EliminarBoton.setEnabled(false);
                 if (carFlaAct == 1) {
                     try {
-                        String sql = "update "+NOMBRE_TABLA+" set "+NOMBRE_DATO_3+"='*' where "+NOMBRE_DATO_1+"=" + codigo;
+                        String sql = "update "+NOMBRE_TABLA+" set "+NOMBRE_DATO_7+"='*' where "+NOMBRE_DATO_1+"=" + codigo;
                         conet = con1.getConnection();
                         st = conet.createStatement();
                         st.executeUpdate(sql);
                         JOptionPane.showMessageDialog(null, NOMBRE_INSTACIA+" Eliminado!");
                         limpiarFormulario();
-                        desactivarFormulario();
+                        desactivarFormularioEdic();
                         limpiarTabla();
                     } catch (Exception e) {
-                        System.out.println("Error SQL: " + e);
+                        System.out.println("Error SQL: " + e.getMessage());
                         consulta();
                     }
                 }
@@ -507,16 +609,16 @@ public class JTable_Cargos_Proyecto extends javax.swing.JFrame {
                 //InactivarBoton.setEnabled(false);
                 if (carFlaAct == 1) {
                     try {
-                        String sql = "update "+NOMBRE_TABLA+" set "+NOMBRE_DATO_3+"='I' where "+NOMBRE_DATO_1+"=" + codigo;
+                        String sql = "update "+NOMBRE_TABLA+" set "+NOMBRE_DATO_7+"='I' where "+NOMBRE_DATO_1+"=" + codigo;
                         conet = con1.getConnection();
                         st = conet.createStatement();
                         st.executeUpdate(sql);
                         JOptionPane.showMessageDialog(null, NOMBRE_INSTACIA+" Inactivado!");
                         limpiarFormulario();
-                        desactivarFormulario();
+                        desactivarFormularioEdic();
                         limpiarTabla();
                     } catch (Exception e) {
-                        System.out.println("Error SQL: " + e);
+                        System.out.println("Error SQL: " + e.getMessage());
                         consulta();
                     }
                 }
@@ -526,16 +628,16 @@ public class JTable_Cargos_Proyecto extends javax.swing.JFrame {
                 if (estado.equals("*") || estado.equals("I")) {
                     if (carFlaAct == 1) {
                         try {
-                            String sql = "update "+NOMBRE_TABLA+" set "+NOMBRE_DATO_3+"='A' where "+NOMBRE_DATO_1+"=" + codigo;
+                            String sql = "update "+NOMBRE_TABLA+" set "+NOMBRE_DATO_7+"='A' where "+NOMBRE_DATO_1+"=" + codigo;
                             conet = con1.getConnection();
                             st = conet.createStatement();
                             st.executeUpdate(sql);
                             JOptionPane.showMessageDialog(null, NOMBRE_INSTACIA+" Reactivado!");
                             limpiarFormulario();
-                            desactivarFormulario();
+                            desactivarFormularioEdic();
                             limpiarTabla();
                         } catch (Exception e) {
-                            System.out.println("Error SQL: " + e);
+                            System.out.println("Error SQL: " + e.getMessage());
                             consulta();
                         }
                     }
@@ -554,7 +656,7 @@ public class JTable_Cargos_Proyecto extends javax.swing.JFrame {
     private void cancelar() {
         carFlaAct = 0;
         limpiarFormulario();
-        desactivarFormulario();
+        desactivarFormularioEdic();
         ActualizarBoton.setEnabled(false);
     }
 
@@ -568,14 +670,60 @@ public class JTable_Cargos_Proyecto extends javax.swing.JFrame {
     private void limpiarFormulario() {
         String t = "";
         txtCode.setText(t);
+        txtSecuencia.setText(t);
         txtNombre.setText(t);
+        txtTiempoEst.setText(t);
+        txtDescr.setText(t);
+        txtCosto.setText(t);
         txtEstado.setText(t);
     }
-
-    private void desactivarFormulario() {
-        String t = "";
+    
+    private void rellenarFormulario(String c, String s, String n, String t, String d, String ct, String e) {
+        txtCode.setText(c);
+        txtSecuencia.setText(s);
+        txtNombre.setText(n);
+        txtTiempoEst.setText(t);
+        txtDescr.setText(d);
+        txtCosto.setText(ct);
+        txtEstado.setText(e);
+    }
+    
+    private void desactivarFormularioEdic() {
         txtCode.setEditable(false);
+        txtSecuencia.setEditable(false);
         txtNombre.setEditable(false);
+        txtTiempoEst.setEditable(false);
+        txtDescr.setEditable(false);
+        txtCosto.setEditable(false);
+        txtEstado.setEditable(false);
+        desactivarFormularioEnab();
+    }
+    
+    private void desactivarFormularioEnab() {
+        txtCode.setEnabled(false);
+        txtSecuencia.setEnabled(false);
+        txtNombre.setEnabled(false);
+        txtTiempoEst.setEnabled(false);
+        txtDescr.setEnabled(false);
+        txtCosto.setEnabled(false);
+        txtEstado.setEnabled(false);
+    }
+    
+    private void activarFormulario() {
+        txtCode.setEditable(true);
+        txtCode.setEnabled(true);
+        txtSecuencia.setEditable(true);
+        txtSecuencia.setEnabled(true);
+        txtNombre.setEditable(true);
+        txtNombre.setEnabled(true);
+        txtTiempoEst.setEditable(true);
+        txtTiempoEst.setEnabled(true);
+        txtDescr.setEditable(true);
+        txtDescr.setEnabled(true);
+        txtCosto.setEditable(true);
+        txtCosto.setEnabled(true);
+        txtEstado.setEditable(true);
+        txtEstado.setEnabled(true);
     }
 
     private void eliminar() {
@@ -585,19 +733,16 @@ public class JTable_Cargos_Proyecto extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Ninguna fila seleccionada");
         } else {
             idc = Integer.parseInt((String) Tabla.getValueAt(fila, 0).toString());
-            String nombre = (String) Tabla.getValueAt(fila, 1);
-            String estado = (String) Tabla.getValueAt(fila, 2);
+            String secuencia = (String) Tabla.getValueAt(fila, 1).toString();
+            String nombre = (String) Tabla.getValueAt(fila, 2).toString();
+            String tiempoEst = (String) Tabla.getValueAt(fila, 3).toString();
+            String descripcion = (String) Tabla.getValueAt(fila, 4).toString();
+            String costo = (String) Tabla.getValueAt(fila, 5).toString();
+            String estado = (String) Tabla.getValueAt(fila, 6).toString();
 
-            txtCode.setText("" + idc);
-            txtCode.setEditable(false);
-            txtCode.setEnabled(false);
-            txtNombre.setText(nombre);
-            txtNombre.setEditable(false);
-            txtNombre.setEnabled(false);
-
-            txtEstado.setText(estado);
-            txtEstado.setEditable(false);
-            txtEstado.setEnabled(false);
+            rellenarFormulario("" + idc, secuencia, nombre, tiempoEst, descripcion, costo, estado);
+            
+            desactivarFormularioEdic();
             carFlaAct = 1;
 
             //String sql = "select * from c1z_tipo_clientes";
@@ -611,19 +756,20 @@ public class JTable_Cargos_Proyecto extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Ninguna fila seleccionada");
         } else {
             idc = Integer.parseInt((String) Tabla.getValueAt(fila, 0).toString());
-            String nombre = (String) Tabla.getValueAt(fila, 1);
-            String estado = (String) Tabla.getValueAt(fila, 2);
-
-            txtCode.setText("" + idc);
+            String secuencia = (String) Tabla.getValueAt(fila, 1).toString();
+            String nombre = (String) Tabla.getValueAt(fila, 2).toString();
+            String tiempoEst = (String) Tabla.getValueAt(fila, 3).toString();
+            String descripcion = (String) Tabla.getValueAt(fila, 4).toString();
+            String costo = (String) Tabla.getValueAt(fila, 5).toString();
+            String estado = (String) Tabla.getValueAt(fila, 6).toString();
+            
+            rellenarFormulario("" + idc, secuencia, nombre, tiempoEst, descripcion, costo, estado);
+            activarFormulario();
             txtCode.setEditable(false);
             txtCode.setEnabled(false);
-            txtNombre.setText(nombre);
-            txtNombre.setEditable(true);
-            txtNombre.setEnabled(true);
-
-            txtEstado.setText(estado);
             txtEstado.setEditable(false);
             txtEstado.setEnabled(false);
+            
             carFlaAct = 1;
         }
     }
@@ -635,19 +781,15 @@ public class JTable_Cargos_Proyecto extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Ninguna fila seleccionada");
         } else {
             idc = Integer.parseInt((String) Tabla.getValueAt(fila, 0).toString());
-            String nombre = (String) Tabla.getValueAt(fila, 1);
-            String estado = (String) Tabla.getValueAt(fila, 2);
-
-            txtCode.setText("" + idc);
-            txtCode.setEditable(false);
-            txtCode.setEnabled(false);
-            txtNombre.setText(nombre);
-            txtNombre.setEditable(false);
-            txtNombre.setEnabled(false);
-
-            txtEstado.setText(estado);
-            txtEstado.setEditable(false);
-            txtEstado.setEnabled(false);
+            String secuencia = (String) Tabla.getValueAt(fila, 1).toString();
+            String nombre = (String) Tabla.getValueAt(fila, 2).toString();
+            String tiempoEst = (String) Tabla.getValueAt(fila, 3).toString();
+            String descripcion = (String) Tabla.getValueAt(fila, 4).toString();
+            String costo = (String) Tabla.getValueAt(fila, 5).toString();
+            String estado = (String) Tabla.getValueAt(fila, 6).toString();
+            
+            rellenarFormulario("" + idc, secuencia, nombre, tiempoEst, descripcion, costo, estado);
+            desactivarFormularioEdic();
             carFlaAct = 1;
 
         }
@@ -660,19 +802,15 @@ public class JTable_Cargos_Proyecto extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Ninguna fila seleccionada");
         } else {
             idc = Integer.parseInt((String) Tabla.getValueAt(fila, 0).toString());
-            String nombre = (String) Tabla.getValueAt(fila, 1);
-            String estado = (String) Tabla.getValueAt(fila, 2);
-
-            txtCode.setText("" + idc);
-            txtCode.setEditable(false);
-            txtCode.setEnabled(false);
-            txtNombre.setText(nombre);
-            txtNombre.setEditable(false);
-            txtNombre.setEnabled(false);
-
-            txtEstado.setText(estado);
-            txtEstado.setEditable(false);
-            txtEstado.setEnabled(false);
+            String secuencia = (String) Tabla.getValueAt(fila, 1).toString();
+            String nombre = (String) Tabla.getValueAt(fila, 2).toString();
+            String tiempoEst = (String) Tabla.getValueAt(fila, 3).toString();
+            String descripcion = (String) Tabla.getValueAt(fila, 4).toString();
+            String costo = (String) Tabla.getValueAt(fila, 5).toString();
+            String estado = (String) Tabla.getValueAt(fila, 6).toString();
+            
+            rellenarFormulario("" + idc, secuencia, nombre, tiempoEst, descripcion, costo, estado);
+            desactivarFormularioEdic();
             carFlaAct = 1;
         }
     }
