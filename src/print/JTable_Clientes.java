@@ -216,16 +216,16 @@ public class JTable_Clientes extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(CliFecUltDia, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(CliFecUltMes, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(CliFecUltAnio, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE))
+                                .addComponent(CliFecUltAnio, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(CliFecCesDia, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(CliFecCesMes, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(CliFecCesAnio, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE))
+                                .addComponent(CliFecCesAnio, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -234,7 +234,7 @@ public class JTable_Clientes extends javax.swing.JFrame {
                                         .addComponent(CliFecIngMes, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(CliTipCli, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(CliFecIngAnio, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
+                                .addComponent(CliFecIngAnio, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(533, 533, 533))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -261,7 +261,7 @@ public class JTable_Clientes extends javax.swing.JFrame {
                     .addComponent(CliTipCli, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(15, 15, 15)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(CliFecIngAnio)
+                    .addComponent(CliFecIngAnio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(CliFecIngDia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(CliFecIngMes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -296,7 +296,7 @@ public class JTable_Clientes extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Codigo", "Descripcion", "Tipo", "I_Año", "I_Mes", "I_Dia", "C_Año", "C_Mes", "C_Dia", "U_Año", "U_Mes", "U_Dia", "Estado", "Registro"
+                "Codigo", "Descripcion", "Tipo", "I_Dia", "I_Mes", "I_Año", "C_Dia", "C_Mes", "C_Año", "U_Dia", "U_Mes", "U_Año", "Estado", "Registro"
             }
         ));
         Tabla.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -432,7 +432,7 @@ public class JTable_Clientes extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 839, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 839, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
@@ -440,7 +440,7 @@ public class JTable_Clientes extends javax.swing.JFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(87, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(tituloTabla, javax.swing.GroupLayout.PREFERRED_SIZE, 676, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(88, 88, 88))
         );
@@ -761,9 +761,9 @@ public class JTable_Clientes extends javax.swing.JFrame {
                             String sql = "insert into " + NOMBRE_TABLA + " (" + NOMBRE_DATO_1 + ", " + NOMBRE_DATO_2 + ", " + NOMBRE_DATO_3 + ", " + NOMBRE_DATO_4 
                                     + ", " + NOMBRE_DATO_5 + ", " + NOMBRE_DATO_6 + ", " + NOMBRE_DATO_7 + ", " + NOMBRE_DATO_8 + ", " + NOMBRE_DATO_9 + ", "
                                     + NOMBRE_DATO_10 + ", " + NOMBRE_DATO_11 + ", " + NOMBRE_DATO_12 + ", " + NOMBRE_DATO_13 + ", " + NOMBRE_DATO_14 + ")"
-                                    + "values('" + codigo + "','" + nombre + "','" + tipo + "','" + fecIngDia + "','" + fecIngMes + "','" + fecIngAnio
-                                    + "','" + fecCesDia + "','" + fecCesMes + "','" + fecCesAnio + "','" + fecUltDia + "','" + fecUltMes + "','"
-                                    + fecUltAnio + "','" + estCli + "','" + estado + "')";
+                                    + "values('" + codigo + "','" + nombre + "','" + tipo + "','" + fecIngAnio + "','" + fecIngMes + "','" + fecIngDia
+                                    + "','" + fecCesAnio + "','" + fecCesMes + "','" + fecCesDia + "','" + fecUltAnio + "','" + fecUltMes + "','"
+                                    + fecUltDia + "','" + estCli + "','" + estado + "')";
                             conet = con1.getConnection();
                             st = conet.createStatement();
                             st.executeUpdate(sql);
@@ -787,9 +787,9 @@ public class JTable_Clientes extends javax.swing.JFrame {
                     if ((carFlaAct == 1)) {
                         try {
                             String sql = "update " + NOMBRE_TABLA + " set " + NOMBRE_DATO_2 + "='" + nombre + "', " + NOMBRE_DATO_3 + "='" + tipo + "', "
-                                        + NOMBRE_DATO_4 + "='" + fecIngDia + "', " + NOMBRE_DATO_5 + "='" + fecIngMes + "', " + NOMBRE_DATO_6 + "='" + fecIngAnio + "', "
-                                        + NOMBRE_DATO_7 + "='" + fecCesDia + "', " + NOMBRE_DATO_8 + "='" + fecCesMes + "', " + NOMBRE_DATO_9 + "='" + fecCesAnio + "', "
-                                        + NOMBRE_DATO_10 + "='" + fecUltDia + "', " + NOMBRE_DATO_11 + "='" + fecUltMes + "', " + NOMBRE_DATO_12 + "='" + fecUltAnio + "', "
+                                        + NOMBRE_DATO_4 + "='" + fecIngAnio + "', " + NOMBRE_DATO_5 + "='" + fecIngMes + "', " + NOMBRE_DATO_6 + "='" + fecIngDia + "', "
+                                        + NOMBRE_DATO_7 + "='" + fecCesAnio + "', " + NOMBRE_DATO_8 + "='" + fecCesMes + "', " + NOMBRE_DATO_9 + "='" + fecCesDia + "', "
+                                        + NOMBRE_DATO_10 + "='" + fecUltAnio + "', " + NOMBRE_DATO_11 + "='" + fecUltMes + "', " + NOMBRE_DATO_12 + "='" + fecUltDia + "', "
                                         + NOMBRE_DATO_13 + "='" + estCli + "' where " + NOMBRE_DATO_1 + "=" + codigo;
                             conet = con1.getConnection();
                             st = conet.createStatement();
